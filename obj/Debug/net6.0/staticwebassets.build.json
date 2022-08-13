@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fFs39em7CPzKDkEc9SSeCm2m3yVIEt4so/qQ/ErpsPc=",
+  "Hash": "AGUfl4SH1nyNkWKpZrsdaxSbfD+dSVQ+XIlOA361pYs=",
   "Source": "WebProje2",
   "BasePath": "_content/WebProje2",
   "Mode": "Default",
@@ -1256,6 +1256,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\wwwroot\\css\\style.css",
+      "SourceId": "WebProje2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\wwwroot\\",
+      "BasePath": "_content/WebProje2",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\wwwroot\\favicon.ico",
