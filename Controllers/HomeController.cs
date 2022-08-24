@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Localization;
+using System.Text;
 
 namespace WebProje.Controllers;
 public class HomeController : Controller
@@ -37,10 +38,19 @@ public class HomeController : Controller
             {
                 Expires = DateTimeOffset.UtcNow.AddDays(7)
             }
-    );
+        );
  
-    return LocalRedirect(returnUrl);
-}
+        return LocalRedirect(returnUrl);
+    }
+
+    [Route("/api/[Controller]")]
+    [HttpGet]
+    public FileResult download()
+    {
+        //get all products
+        var String = JsonSerializer.Serialize(_context.Product);
+        return File(Encoding.ASCII.GetBytes(String), "text/plain", "Product.txt");
+    }
 
     public IActionResult login()
     {
