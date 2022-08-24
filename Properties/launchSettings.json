@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WebProje2": {
+    "WebProje": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

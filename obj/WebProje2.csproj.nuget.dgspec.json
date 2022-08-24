@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje2.csproj": {}
+    "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje2.csproj": {
+    "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje2.csproj",
-        "projectName": "WebProje2",
-        "projectPath": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje2.csproj",
+        "projectUniqueName": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje.csproj",
+        "projectName": "WebProje",
+        "projectPath": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\WebProje.csproj",
         "packagesPath": "C:\\Users\\Lutfu Orhun\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Lutfu Orhun\\Desktop\\WebProje\\obj\\",
         "projectStyle": "PackageReference",

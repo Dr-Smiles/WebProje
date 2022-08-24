@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "WebProje2/1.0.0": {
+      "WebProje/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
@@ -15,7 +15,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.6"
         },
         "runtime": {
-          "WebProje2.dll": {}
+          "WebProje.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -416,7 +416,7 @@
     }
   },
   "libraries": {
-    "WebProje2/1.0.0": {
+    "WebProje/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using WebProje.Controllers
+ 
+@inject IOptions<RequestLocalizationOptions> LocOptions
+ 
+@{
+    string returnUrl = ViewContext.HttpContext.Request.Path;
+ 
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+
+@inject IHtmlLocalizer<HomeController> HtmlLocalizer
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -15,9 +35,14 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="~/css/core-style.css">
-    <link rel="stylesheet" href="~/style.css">
 
 </head>
+
+<script>
+    window.onload = function() {
+        $.scoped();
+    };
+</script>
 
 <body>
     <!-- Search Wrapper Area Start -->
@@ -68,35 +93,36 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="@Url.Action("Index")">Home</a></li>
-                    <li><a href="@Url.Action("shop")">Shop</a></li>
-                    <li><a href="@Url.Action("productdetails")">Product</a></li>
-                    <li><a href="@Url.Action("cart")"">Cart</a></li>
-                    <li><a href="@Url.Action("checkout")">Checkout</a></li>
+                    <li class="active"><a href="@Url.Action("Index")">@HtmlLocalizer["Home"]</a></li>
+                    <li><a href="@Url.Action("shop")">@HtmlLocalizer["Shop"]</a></li>
+                    <li><a href="@Url.Action("cart")"">@HtmlLocalizer["Cart"]</a></li>
+                    <li><a href="@Url.Action("checkout")">@HtmlLocalizer["Checkout"]</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div>
+                <a href="/Identity/Account/Login" class="btn amado-btn mb-15">@HtmlLocalizer["LoginRegister"]</a>
+            </div> <!-- /Identity/Account/Register -->
             <!-- Cart Menu -->
-            <div class="cart-fav-search mb-100">
-                <a href="@Url.Action("cart")" class="cart-nav"><img src="~/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="#" class="fav-nav"><img src="~/img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="~/img/core-img/search.png" alt=""> Search</a>
-            </div>
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
+            <form asp-action="ChangeLanguage" asp-controller="Home" method="post">
+
+            <input type="hidden" id="returnUrl" name="returnUrl" value="@returnUrl" />
+
+                <select id="culture"
+                    name="culture"
+                    class="form-control"
+                    onchange="this.form.submit();"
+                    asp-items="cultureItems"
+                    asp-for="@requestCulture.RequestCulture.UICulture.Name">
+                </select>
+
+            </form>
         </header>
         <!-- Header Area End -->
 
+
         @RenderBody()
+
 
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
@@ -108,8 +134,8 @@
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                        <h2> <span>@HtmlLocalizer["Subscribe"]</span></h2>
+                        <p style="font-family:arial; font-size:20px">@HtmlLocalizer["Copyright"]</p>
                     </div>
                 </div>
                 <!-- Newsletter Form -->
@@ -139,8 +165,8 @@
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> & Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon and love  <i class="fa fa-heart-o" aria-hidden="true"></i> Gokce!</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> & Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon and love  <i class="fa fa-heart-o" aria-hidden="true"></i> Gokce!</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
                 <!-- Single Widget Area -->
@@ -153,19 +179,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="@Url.Action("Index")">Home</a>
+                                            <a class="nav-link" href="@Url.Action("Index")">@HtmlLocalizer["Home"]</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="@Url.Action("shop")">Shop</a>
+                                            <a class="nav-link" href="@Url.Action("shop")">@HtmlLocalizer["Shop"]</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="@Url.Action("productdetails")">Product</a>
+                                            <a class="nav-link" href="@Url.Action("productdetails")">@HtmlLocalizer["Product"]</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="@Url.Action("cart")"">Cart</a>
+                                            <a class="nav-link" href="@Url.Action("cart")">@HtmlLocalizer["Cart"]</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="@Url.Action("checkout")">Checkout</a>
+                                            <a class="nav-link" href="@Url.Action("checkout")">@HtmlLocalizer["Checkout"]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -177,9 +203,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+    "
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="~/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -188,7 +215,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="~/js/plugins.js"></script>
     <!-- Active js -->
     <script src="~/js/active.js"></script>
+    <!-- Google Maps -->
+    <script src="~/js/jquery.scoped.js"></script>
 
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
